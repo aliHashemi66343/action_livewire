@@ -18,7 +18,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 //Participant Routes
-Route::get('/participants',\App\Actions\IndexParticipant::class);
+Route::get('/participants',\App\Actions\Participant\ParticipantIndex::class);
 Route::post('/participants',CreateParticipant::class);
 Route::get('/participants/{participant}',\App\Actions\ReadParticipant::class);
 Route::post('/participants/{participant}',\App\Actions\UpdateParticipant::class);

@@ -16,7 +16,8 @@ return new class extends Migration
     {
         Schema::create('participants', function (Blueprint $table) {
             $table->id();
-            $table->string('created_at')->default(Jalalian::fromCarbon(\Carbon\Carbon::now('Asia/Tehran')));
+            $table->string('created_at')->nullable();
+//                ->default(Jalalian::fromCarbon(\Carbon\Carbon::now('Asia/Tehran')));
             $table->string('updated_at')->nullable();
             $table->string('mobile')->nullable();
             $table->string('national_code')->nullable();
