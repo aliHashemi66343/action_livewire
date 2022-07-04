@@ -2,14 +2,12 @@
 
 namespace App\Actions;
 
+use App\Http\Resources\ParticipantResource;
 use App\Models\Participant;
-use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Http\Exceptions\HttpResponseException;
 use Illuminate\Http\Request;
 use Lorisleiva\Actions\Concerns\AsAction;
 use Illuminate\Validation\Validator;
-use Lorisleiva\Actions\Concerns\AsController;
-use Lorisleiva\Actions\Concerns\AsObject;
 
 
 class CreateParticipant
@@ -23,43 +21,55 @@ class CreateParticipant
         'national_code' => 'required|numeric'
     ];
 
-    public function handle(Request $request)
+    public function handle($data)
     {
-        // ...
-////        ? where is the asObject method
-        $validatedDate = $request->validate($this->rules);
-        $new_participant = new Participant;
-//        echo $validatedDate;
-        if (count($validatedDate->errors)>0){
-            $this->failedValidation($validatedDate);
-        }
-        foreach ($request->keys() as $key) {
-            $new_participant->$key = $request[$key];
-        }
+//        // ...
+//////        ? where is the asObject method
+//        $validatedDate = $request->validate($this->rules);
+//        $new_participant = new Participant;
+////        echo $validatedDate;
+//        if (count($validatedDate->errors)>0){
+//            $this->failedValidation($validatedDate);
+//        }
+//        foreach ($request->keys() as $key) {
+//            $new_participant->$key = $request[$key];
+//        }
 
-        $new_participant->save();
-
-        return response($new_participant,200);
+//        $new_participant->save();
+//
+//        return response($new_participant,200);
 
 //        return $this->rules();
 
+        return Participant::create($data);
+
     }
 
-    public function failedValidation(Validator $validator)
+    public function asController(Request $request)
     {
-        throw new HttpResponseException(response()->json([
-            'success'   => false,
-            'message'   => 'Validation errors',
-            'data'      => $validator->errors()
-        ]));
+        return $this->handle($request->input());
     }
 
-
-
-    public function rules()
+    public function jsonResponse(Participant $participant): ParticipantResource
     {
-        return $this->rules;
+        return new ParticipantResource($participant);
     }
+//
+//    public function failedValidation(Validator $validator)
+//    {
+//        throw new HttpResponseException(response()->json([
+//            'success'   => false,
+//            'message'   => 'Validation errors',
+//            'data'      => $validator->errors()
+//        ]));
+//    }
+//
+//
+//
+//    public function rules()
+//    {
+//        return $this->rules;
+//    }
 
 
 }
