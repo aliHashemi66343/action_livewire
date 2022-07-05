@@ -2,7 +2,11 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Actions\CreateParticipant;
+use \App\Actions\Participant\ParticipantIndex;
+use \App\Actions\Participant\ParticipantCreate;
+use \App\Actions\Participant\ParticipantUpdate;
+use \App\Actions\Participant\ParticipantDelete;
+use \App\Actions\Participant\ParticipantRead;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -14,12 +18,13 @@ use App\Actions\CreateParticipant;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+Route::middleware('auth:sanctum')->get('/user2', function (Request $request) {
     return $request->user();
 });
 //Participant Routes
-Route::get('/participants',\App\Actions\Participant\ParticipantIndex::class);
-Route::post('/participants',\App\Actions\CreateParticipant::class);
-Route::get('/participants/{participant}',\App\Actions\ReadParticipant::class);
-Route::post('/participants/{participant}',\App\Actions\UpdateParticipant::class);
-Route::delete('/participants/{participant}',\App\Actions\DeleteParticipant::class);
+//Route::get('/test',function (){dd('khodaaaaa');});
+Route::get('/participants',ParticipantIndex::class);
+Route::post('/participants',ParticipantCreate::class);
+Route::get('/participants/{participant}',ParticipantRead::class);
+Route::post('/participants/{participant}',ParticipantUpdate::class);
+Route::delete('/participants/{participant}',ParticipantDelete::class);

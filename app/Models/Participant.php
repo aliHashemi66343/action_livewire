@@ -13,27 +13,8 @@ class Participant extends Model
 {
 
     use HasFactory;
-
 //    use InteractsWithMedia;
-
-    /**
-     * Indicates if the model should be timestamped.
-     *
-     * @var bool
-     */
-    public $timestamps = false;
-
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array<string>
-     */
-    protected $fillable = [
-        'first_name',
-        'last_name',
-        'mobile',
-        'national_code'
-    ];
-
+    public $timestamps=false;
+    protected $fillable=['first_name','last_name','mobile','national_code'];
 //    protected $casts=['created_at'=>DateCastToJalali::class,'updated_at'=>DateCastToJalali::class];
 }

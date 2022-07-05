@@ -14,6 +14,10 @@ class ParticipantResourceCollection extends ResourceCollection
      */
     public function toArray($request)
     {
-        return parent::toArray($request);
+        return [
+
+          'data'=>ParticipantResource::collection($this->collection),
+          'count'=>count(ParticipantResource::collection($this->resource))
+        ];
     }
 }

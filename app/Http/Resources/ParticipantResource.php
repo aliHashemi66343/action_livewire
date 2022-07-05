@@ -14,6 +14,14 @@ class ParticipantResource extends JsonResource
      */
     public function toArray($request)
     {
-        return parent::toArray($request);
+        $mobile=$this->resource->mobile;
+        $mobile_with_code="+98".substr($mobile,1);
+        return [
+            'id'=>$this->resource->id,
+            'first_name'=>$this->resource->first_name,
+            'last_name'=>$this->resource->last_name,
+            'national_code'=>$this->resource->national_code,
+            'mobile'=>$mobile_with_code,
+        ];
     }
 }

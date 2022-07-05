@@ -20,11 +20,18 @@ class ParticipantIndex
 
     public function asController(Request $request): \Illuminate\Database\Eloquent\Collection
     {
+//        echo "ali";
+//        dd($this->handle($request->input()));
         return $this->handle($request->input());
+
     }
 
-    public function jsonResponse($participants): ParticipantResourceCollection
+    public function jsonResponse($participants,Request $request): ParticipantResourceCollection
     {
+//        echo $Participants[0];
+//        echo "ali";
+
         return new ParticipantResourceCollection($participants);
     }
+
 }

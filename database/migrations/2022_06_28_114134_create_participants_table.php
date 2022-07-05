@@ -14,10 +14,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('participants', function (Blueprint $table) {
+        Schema::create('Participants', function (Blueprint $table) {
             $table->id();
-            $table->string('created_at')->nullable();
-//                ->default(Jalalian::fromCarbon(\Carbon\Carbon::now('Asia/Tehran')));
+            $table->string('created_at')->default(Jalalian::fromCarbon(\Carbon\Carbon::now('Asia/Tehran')));
             $table->string('updated_at')->nullable();
             $table->string('mobile')->nullable();
             $table->string('national_code')->nullable();
@@ -34,6 +33,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('participants');
+        Schema::dropIfExists('Participants');
     }
 };
